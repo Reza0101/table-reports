@@ -66,6 +66,21 @@ const TableBody = ({
 }) => {
   return (
     <tbody className="border-border-primary p-6 gap-x-4 grid grid-cols-8  border-2 rounded-xl">
+      <tr className="flex custom-border right-0 sticky rounded-md bg-white gap-4 flex-col col-span-1 row-span-1">
+        {data?.rows.map((item: string, index: number) => (
+          <td
+            onMouseLeave={() => setHoverRow(null)} // Reset row hover state when mouse leaves
+            onMouseEnter={() => setHoverRow(index)} // Set row hover state when mouse enters
+            className={`cursor-pointer text-primary-secondary py-2.5 min-w-14 transition-colors rounded-md p-2 text-center duration-300 
+            ${index === data.rows.length - 1 && "mt-3"}
+            ${hoverRow === index && "bg-highlight-primary-blue text-white"}
+            `}
+            key={index}
+          >
+            {item}
+          </td>
+        ))}
+      </tr>
       <tr className="col-span-7 h-fit grid-rows-6 row-span-6">
         {data?.data
           .slice(0, data?.data.length)
@@ -95,21 +110,6 @@ const TableBody = ({
               ))}
             </tr>
           ))}
-      </tr>
-      <tr className="flex custom-border right-0 sticky rounded-md bg-white gap-4 flex-col col-span-1 row-span-1">
-        {data?.rows.map((item: string, index: number) => (
-          <td
-            onMouseLeave={() => setHoverRow(null)} // Reset row hover state when mouse leaves
-            onMouseEnter={() => setHoverRow(index)} // Set row hover state when mouse enters
-            className={`cursor-pointer text-primary-secondary py-2.5 min-w-14 transition-colors rounded-md p-2 text-center duration-300 
-            ${index === data.rows.length - 1 && "mt-3"}
-            ${hoverRow === index && "bg-highlight-primary-blue text-white"}
-            `}
-            key={index}
-          >
-            {item}
-          </td>
-        ))}
       </tr>
     </tbody>
   );

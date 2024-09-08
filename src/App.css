@@ -6,6 +6,7 @@
 }
 body {
     font-family: Vazirmatn;
+    direction: rtl;
 }
 .custom-margin:not(:last-child){
     margin-bottom: 16px;
