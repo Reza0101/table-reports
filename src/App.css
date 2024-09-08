@@ -7,3 +7,6 @@
 body {
     font-family: Vazirmatn;
 }
+.custom-margin:not(:last-child){
+    margin-bottom: 16px;
+}
