@@ -9,7 +9,6 @@ const getColorClass = (
   indexParent: number,
   data: any
 ) => {
-
   // Define a mapping of numerical values to Tailwind CSS color classes
   const colorClasses: { [key: string]: string } = {
     9: "bg-green-950",
@@ -72,7 +71,10 @@ const TableBody = ({
           .slice(0, data?.data.length)
           .map((item: number[], indexParent: number) => (
             <tr
-              className="grid custom-margin gap-x-4 grid-cols-7"
+              className={`
+              ${indexParent === data.rows.length - 1 && "border-t-2 pt-3"}
+
+              grid custom-margin gap-x-4 grid-cols-7`}
               key={indexParent}
             >
               {item.map((item: number, index: number) => (
@@ -94,14 +96,15 @@ const TableBody = ({
             </tr>
           ))}
       </tr>
-      <tr className="flex right-0 sticky rounded-md bg-white gap-4 flex-col col-span-1 row-span-1">
+      <tr className="flex custom-border right-0 sticky rounded-md bg-white gap-4 flex-col col-span-1 row-span-1">
         {data?.rows.map((item: string, index: number) => (
           <td
             onMouseLeave={() => setHoverRow(null)} // Reset row hover state when mouse leaves
             onMouseEnter={() => setHoverRow(index)} // Set row hover state when mouse enters
-            className={`cursor-pointer text-primary-secondary py-2.5 min-w-14 transition-colors rounded-md p-2 text-center duration-300 ${
-              hoverRow === index && "bg-highlight-primary-blue text-white"
-            }`}
+            className={`cursor-pointer text-primary-secondary py-2.5 min-w-14 transition-colors rounded-md p-2 text-center duration-300 
+            ${index === data.rows.length - 1 && "mt-3"}
+            ${hoverRow === index && "bg-highlight-primary-blue text-white"}
+            `}
             key={index}
           >
             {item}
