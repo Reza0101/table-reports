@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Vazirmatn';
+    font-style: normal;
+    font-weight: normal;
+    src: url('./assets/fonts/Vazirmatn-FD-Regular.woff2') format('woff2');
+}
+body {
+    font-family: Vazirmatn;
+}
