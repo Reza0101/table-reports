@@ -59,25 +59,26 @@ const TableBody = ({
   hoverRow,
   setHoverRow,
 }: {
-  data: tableReportsData | undefined;
+  data: tableReportsData;
   hoverColl: number | null;
   hoverRow: number | null;
-  setHoverRow: any;
+  setHoverRow: (index: number | null) => void;
 }) => {
   return (
-    <tbody className="border-border-primary p-6 gap-x-4 grid grid-cols-8  border-2 rounded-xl">
-      <tr className="flex custom-border right-0 sticky rounded-md bg-white gap-4 flex-col col-span-1 row-span-1">
+    <tbody className="border-border-primary p-6 gap-x-4 grid grid-cols-8 border-2 rounded-xl">
+      {/* Render rows table */}
+      <tr className="flex custom-borderv gap-4 pb-0.5 right-0 sticky rounded-md bg-white flex-col col-span-1 row-span-1">
         {data?.rows.map((item: string, index: number) => (
           <td
             onMouseLeave={() => setHoverRow(null)} // Reset row hover state when mouse leaves
             onMouseEnter={() => setHoverRow(index)} // Set row hover state when mouse enters
-            className={`cursor-pointer text-primary-secondary py-2.5 min-w-14 transition-colors rounded-md p-2 text-center duration-300 
+            className={`cursor-pointer text-primary-secondary h-10 flex items-center justify-center min-w-14 transition-colors rounded-md text-center duration-300 
             ${index === data.rows.length - 1 && "mt-3"}
             ${hoverRow === index && "bg-highlight-primary-blue text-white"}
             `}
             key={index}
-          >
-            {item}
+          >              
+          {item}
           </td>
         ))}
       </tr>
@@ -95,7 +96,8 @@ const TableBody = ({
               {item.map((item: number, index: number) => (
                 <td className={`min-w-14 text-center self-center`} key={index}>
                   <p
-                    className={`text-center rounded-md border border-border-primary transition-colors duration-300 py-2 px-6 ${getColorClass(
+                    style={{direction: 'ltr'}}
+                    className={`text-center rounded-md border border-border-primary transition-colors h-10 flex items-center duration-300 px-6 ${getColorClass(
                       item,
                       hoverColl,
                       hoverRow,

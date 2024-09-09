@@ -1,5 +1,5 @@
 export interface tableReportsData {
-    rows: string[],
-    columns: string[],
+    rows: string[] | [],
+    columns: string[] | [],
     data: number[][]
 }

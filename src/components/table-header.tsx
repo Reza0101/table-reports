@@ -3,13 +3,14 @@ const TableHead = ({
   columns,
   hoverColl,
 }: {
-  setHoverCol: any;
-  columns: string[] | undefined;
+  setHoverCol: (index: number | null) => void;
+  columns: string[] | [];
   hoverColl: number | null;
 }) => {
   return (
     <thead>
-      <tr className="grid text-center py-2 grid-cols-8 gap-5 px-6 bg-primary-primary rounded-xl">
+      <tr className="grid py-2 grid-cols-8 gap-5 px-6 bg-primary-primary rounded-xl">
+        <th></th>
         {columns?.map((item: string, index: number) => (
             <th
               onMouseLeave={() => setHoverCol(null)}
