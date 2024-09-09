@@ -1,65 +1,17 @@
-import formatPercentage from "../helpers/function";
 import { setState, tableReportsData } from "../types";
-
-const getColorClass = (
-  item: number | string,
-  hoverColl: number | null,
-  hoverRow: number | null,
-  index: number,
-  indexParent: number,
-  data: any
-) => {
-  // Define a mapping of numerical values to Tailwind CSS color classes
-  const colorClasses: { [key: string]: string } = {
-    9: "bg-green-950",
-    8: "bg-green-900",
-    7: "bg-green-800",
-    6: "bg-green-700",
-    5: "bg-green-600",
-    4: "bg-green-500",
-    3: "bg-green-400",
-    2: "bg-green-300",
-    1: "bg-green-200",
-    0: "bg-gray-100",
-    "-1": "bg-red-100",
-    "-2": "bg-red-200",
-    "-3": "bg-red-300",
-    "-4": "bg-red-400",
-    "-5": "bg-red-500",
-    "-6": "bg-red-600",
-    "-7": "bg-red-700",
-    "-8": "bg-red-800",
-    "-9": "bg-red-900",
-  };
-
-  // Check if the current row is the last row (e.g., "Average" row)
-  if (indexParent + 1 === data.length) {
-    return colorClasses[String(item)] || "bg-white";
-  }
-
-  // Check if the current column is being hovered
-  if (hoverColl === index) {
-    return colorClasses[String(item)] || "bg-white";
-  }
-
-  // Check if the current row is being hovered
-  if (hoverRow === indexParent) {
-    return colorClasses[String(item)] || "bg-white";
-  }
-
-  // Default color when no column or row is hovered
-  if (hoverColl == null && hoverRow == null) {
-    return colorClasses[String(item)] || "bg-white";
-  }
-};
+import GradientComponent from "./gradient-component";
 
 const TableBody = ({
   data,
+  setHoverCel,
   hoverColl,
   hoverRow,
   setHoverRow,
+  hoverCel,
 }: {
   data: tableReportsData;
+  setHoverCel: any,
+  hoverCel: {row: number, col: number} | null
   hoverColl: number | null;
   hoverRow: number | null;
   setHoverRow: setState;
@@ -75,10 +27,11 @@ const TableBody = ({
             className={`cursor-pointer text-primary-secondary h-10 flex items-center justify-center min-w-14 transition-colors rounded-md text-center duration-300 
             ${index === data.rows.length - 1 && "mt-3"}
             ${hoverRow === index && "bg-highlight-primary-blue text-white"}
+            ${hoverCel?.row === index && "bg-highlight-primary-blue text-white"}
             `}
             key={index}
-          >              
-          {item}
+          >
+            {item}
           </td>
         ))}
       </tr>
@@ -94,20 +47,11 @@ const TableBody = ({
               key={indexParent}
             >
               {item.map((item: number, index: number) => (
-                <td className={`min-w-14 text-center self-center`} key={index}>
-                  <p
-                    style={{direction: 'ltr'}}
-                    className={`text-center rounded-md border border-border-primary transition-colors h-10 flex items-center duration-300 px-6 ${getColorClass(
-                      item,
-                      hoverColl,
-                      hoverRow,
-                      index,
-                      indexParent,
-                      data.rows
-                    )}`}
-                  >
-                    {formatPercentage(item)}
-                  </p>
+                <td 
+                onMouseEnter={() => setHoverCel({row: indexParent, col: index})}
+                onMouseLeave={() => setHoverCel(null)}
+                className={`min-w-14 text-center self-center`} key={index}>
+                  <GradientComponent hoverRow={hoverRow} hoverColl={hoverColl} data={data.rows} index={index} indexParent={indexParent} value={item} />
                 </td>
               ))}
             </tr>

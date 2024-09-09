@@ -13,6 +13,8 @@ const TableReports: React.FC = () => {
   // State to track the currently hovered column
   const [hoverColl, setHoverCol] = useState<null | number>(null);
 
+  const [hoverCel, setHoverCel] = useState<null | {row: number, col: number}>(null);
+
   useEffect(() => {
     // Function to get data table from the Api
     const getTableReports = async () => {
@@ -43,6 +45,7 @@ const TableReports: React.FC = () => {
           hoverColl={hoverColl}
           columns={data?.columns}
           setHoverCol={setHoverCol}
+          hoverCel={hoverCel}
         />
         {/* Render table body */}
         <TableBody
@@ -50,6 +53,8 @@ const TableReports: React.FC = () => {
           hoverColl={hoverColl}
           hoverRow={hoverRow}
           setHoverRow={setHoverRow}
+          setHoverCel={setHoverCel}
+          hoverCel={hoverCel}
         />
       </table>
     </div>

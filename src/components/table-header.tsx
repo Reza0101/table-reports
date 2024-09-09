@@ -2,10 +2,12 @@ import { setState } from "../types";
 
 const TableHead = ({
   setHoverCol,
+  hoverCel,
   columns,
   hoverColl,
 }: {
   setHoverCol: setState;
+  hoverCel: {row: number, col: number} | null;
   columns: string[] | [];
   hoverColl: number | null;
 }) => {
@@ -18,8 +20,9 @@ const TableHead = ({
               onMouseLeave={() => setHoverCol(null)}
               onMouseEnter={() => setHoverCol(index)}
               className={`cursor-pointer text-center flex items-center justify-center text-primary-secondary min-w-14 transition-colors rounded-md px-1.5 py-2 duration-300 ${
-                hoverColl === index && "bg-highlight-primary-blue text-white"
-              }`}
+                hoverColl === index && "bg-highlight-primary-blue text-white"}
+                ${hoverCel?.col === index && "bg-highlight-primary-blue text-white" }
+              `}
               key={index}
             >
               {item}
