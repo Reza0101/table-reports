@@ -4,9 +4,11 @@
     font-weight: normal;
     src: url('./assets/fonts/Vazirmatn-FD-Regular.woff2') format('woff2');
 }
-body {
+body, * {
     font-family: Vazirmatn;
     direction: rtl;
+    margin: 0;
+    padding: 0;
 }
 .custom-margin:not(:last-child){
     margin-bottom: 16px;
