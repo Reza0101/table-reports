@@ -3,3 +3,4 @@ export interface tableReportsData {
     columns: string[] | [],
     data: number[][]
 }
+export type setState = (value:  number | null) => void

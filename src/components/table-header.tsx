@@ -1,9 +1,11 @@
+import { setState } from "../types";
+
 const TableHead = ({
   setHoverCol,
   columns,
   hoverColl,
 }: {
-  setHoverCol: (index: number | null) => void;
+  setHoverCol: setState;
   columns: string[] | [];
   hoverColl: number | null;
 }) => {

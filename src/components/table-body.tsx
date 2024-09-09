@@ -1,5 +1,5 @@
 import formatPercentage from "../helpers/function";
-import { tableReportsData } from "../types";
+import { setState, tableReportsData } from "../types";
 
 const getColorClass = (
   item: number | string,
@@ -62,7 +62,7 @@ const TableBody = ({
   data: tableReportsData;
   hoverColl: number | null;
   hoverRow: number | null;
-  setHoverRow: (index: number | null) => void;
+  setHoverRow: setState;
 }) => {
   return (
     <tbody className="border-border-primary p-6 gap-x-4 grid grid-cols-8 border-2 rounded-xl">
