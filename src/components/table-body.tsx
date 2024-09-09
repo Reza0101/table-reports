@@ -88,7 +88,7 @@ const TableBody = ({
           .map((item: number[], indexParent: number) => (
             <tr
               className={`
-              ${indexParent === data.rows.length - 1 && "border-t-2 pt-3"}
+              ${indexParent === data.rows.length - 1 && "border-t-2 border-border-primary pt-3"}
 
               grid custom-margin gap-x-4 grid-cols-7`}
               key={indexParent}
